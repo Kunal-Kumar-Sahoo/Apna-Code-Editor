@@ -60,6 +60,6 @@ Step 4: Now run the program <br>
 ## How to contribute?
 - ### Checkout the existing code base and try to find existing bugs or new features that can be added.
 - ### Go to the [Issues](https://github.com/Kunal-Kumar-Sahoo/Apna-Code-Editor/issues) tab, and check for existing issues or add new issues
-- ### Refer to [CONTRIBUTING.md]()
+- ### Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
