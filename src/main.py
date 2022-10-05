@@ -3,6 +3,8 @@ from tkinter import ttk
 from tkinter.filedialog import asksaveasfilename, askopenfilename
 from tkinter.scrolledtext import ScrolledText
 import subprocess
+import tempfile
+import os
 
 # create an instance for window
 window = Tk()
@@ -63,8 +65,17 @@ def run(event=None):
     '''
     code = editor.get(1.0, END)
     exec(code)
-    '''    
-    cmd = f"python {file_path}"
+    '''
+    use_tempfile = False
+
+    # if there's no file opened, we create a temporary file where the code is saved
+    # this file is deleted after execution
+    if not file_path:
+        use_tempfile = True
+        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+            file_path = tmp.name
+        save_file()
+    cmd = f"python3 {file_path}"
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE, shell=True)
     output, error =  process.communicate()
@@ -77,6 +88,11 @@ def run(event=None):
     # insert the error text in output_windows
     # if there is error
     output_window.insert(1.0, error)
+
+    # delete temporary file if there was any
+    if use_tempfile:
+        os.unlink(file_path)
+        file_path = ""
 window.bind("<F5>", run)
 
 # function to close IDE window
