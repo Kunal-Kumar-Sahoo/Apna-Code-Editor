@@ -87,17 +87,17 @@ window.bind("<Control-q>", close)
 # define function to cut 
 # the selected text
 def cut_text(event=None):
-        editor.event_generate(("<<Cut>>"))
+    editor.event_generate(("<<Cut>>"))
 
 # define function to copy 
 # the selected text
 def copy_text(event=None):
-        editor.event_generate(("<<Copy>>"))
+    editor.event_generate(("<<Copy>>"))
 
 # define function to paste 
 # the previously copied text
 def paste_text(event=None):
-        editor.event_generate(("<<Paste>>"))
+    editor.event_generate(("<<Paste>>"))
      
 
 # create menus
